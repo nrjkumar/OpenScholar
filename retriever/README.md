@@ -67,7 +67,7 @@ PYTHONPATH=.  python ric/main_ric.py \
 
 #### Step 1. Run the serve script
 ```bash
-cd api/
+cd retrieval-scaling/api/
 python serve_pes2o.py
 ```
 
