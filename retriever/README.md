@@ -1,20 +1,21 @@
 # Instruction on Indexing, Searching, and API Serving Over PES2O Data
 
-### Setup Environment (If you haven't)
+## Setup Environment
 ```bash
-git clone https://github.com/RulinShao/retrieval-scaling.git
 cd retrieval-scaling
-git checkout pes2o
 
 # create a new conda environment and install dependencies
 conda env create -f environment.yml
 conda activate scaling
 ```
 
-### Prepare JSONL Data
+### Build Index 
+
+#### Step 1. Prepare JSONL data.
+
 Our dataloader assumes a jsonl formatted data input. Download and convert the [pes2o v3 data](https://huggingface.co/datasets/allenai/peS2o/tree/main/data/v3) into jsonl format and save the converted jsonl data to a directory.
 
-### Build Index 
+#### Step 2. Build the index.
 
 ```bash
 datastore_raw_data_path=$PES2O_V3_JSONL_DIR  # directory that contains the converted jsonl data
@@ -32,7 +33,7 @@ PYTHONPATH=.  python ric/main_ric.py \
 done
 ```
 
-### Search
+## Offline Search
 Prepare your queries in a jsonl format with `query` as one key. E.g., `{'query': "Text used as a retrieval query", other_key: other_value}`.
 ```bash
 EVAL_DOMAIN=$EXP_ID  # self-defined exp id to distinguish outpu
@@ -62,8 +63,7 @@ PYTHONPATH=.  python ric/main_ric.py \
     evaluation.eval_output_dir=$EVAL_OUTPUT_DIR # where the retrieved documents will be saved
 ```
 
-### API Serving
-# Serving a public API on Hyak
+## Online API Serving
 
 #### Step 1. Run the serve script
 ```bash
