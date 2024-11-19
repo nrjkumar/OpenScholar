@@ -68,7 +68,7 @@ By default, OpenScholar takes retrieval results from off-line retrieval results 
 
 We released our retrieval results at [google drive](https://drive.google.com/drive/folders/1lOloYPOveKesD-37lD4Dlju96tc0XIm9?usp=sharing).  
 
-### Use Open LMs (`Llama-3.1_OpenScholar-8B`, ``) locally 
+### Use Open LMs (e.g., `Llama-3.1_OpenScholar-8B`) locally 
 - Run a Standard RAG pipeline using top 10 
 
 ```sh
