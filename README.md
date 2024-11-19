@@ -29,7 +29,7 @@ To help scientists effectively navigate and synthesize scientific literature, we
 This repository contains codes to run OpenScholar inference. 
 
 - [`src/`](src): Main source codes for OpenScholar. 
-- [`training/`](training): Our training code to train Llama 3.1 8B using our processed data. 
+- [`training/`](training): Our training code to train Llama 3.1 8B using our processed data. We modified earlier version of `torchtune` for training. 
 - [`retrieval/`](retrieval): code base to run retrieval offline. 
 
 For automatic and human evaluations, please check the following repositories. 
