@@ -30,7 +30,7 @@ This repository contains codes to run OpenScholar inference.
 
 - [`src/`](src): Main source codes for OpenScholar. 
 - [`training/`](training): Our training code to train Llama 3.1 8B using our processed data. We modified earlier version of `torchtune` for training. 
-- [`retrieval/`](retrieval): Code base to run retrieval offline & host retrieval servers for online retrieval.  
+- [`retriever/`](retriever): Code base to run retrieval offline & host retrieval servers for online retrieval.  
 
 For automatic and human evaluations, please check the following repositories. 
 - To run evaluations on **ScholarQABench**, please check the [ScholarQABench](https://github.com/AkariAsai/ScholarQABench/) repository. 
