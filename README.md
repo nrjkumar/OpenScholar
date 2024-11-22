@@ -139,7 +139,7 @@ Below, we provide the detailed of configurations.
 - `task_name`: specify the task names when you run the single paper tasks. For SciFact, PubmedQA and QASA, the corresponding task names are `claim_full`, `boolean_question_full` and `single_qa`, respectively. 
 
 ## Training
-We train our [OpenScholar-8B](https://huggingface.co/OpenScholar/OpenScholar_Llama-3.1-8B) using our [OpenScholar/OpenScholar_Train_Data](https://huggingface.co/OpenScholar/OpenScholar_Train_Data) data, which consists of 13k instruction-tuning data. We use our modified version of [torchtune]() to train our 8B model using 8*A100. 
+We train our [OpenScholar-8B](https://huggingface.co/OpenScholar/OpenScholar_Llama-3.1-8B) using our [OpenScholar/OS_Train_Data]([https://huggingface.co/OpenScholar/OpenScholar_Train_Data](https://huggingface.co/datasets/OpenScholar/OS_Train_Data)) data, which consists of 13k instruction-tuning data. We use our modified version of [torchtune]() to train our 8B model using 8*A100. 
 
 See mode detailed instructions for setting up the training in [train/](train)
 
