@@ -145,8 +145,8 @@ See mode detailed instructions for setting up the training in [train/](train)
 
 ## Run Retriever
 Both our peS2o v2 and v3 datastore (chunked text + index) are available: 
-- [OpenScholar/OpenScholar-DataStore-V2](https://huggingface.co/OpenScholar/OpenScholar-DataStore-V2)
-- [OpenScholar/OpenScholar-DataStore-V3](https://huggingface.co/OpenScholar/OpenScholar-DataStore-V3)
+- [OpenScholar/OpenScholar-DataStore-V2](https://huggingface.co/datasets/OpenScholar/OpenScholar-DataStore-V2)
+- [OpenScholar/OpenScholar-DataStore-V3](https://huggingface.co/datasets/OpenScholar/OpenScholar-DataStore-V3)
 
 See instructions under [retriever](retriever) to run the peS2o index locally. Note that due to the massive-scale of index (200+M embeddings based on 45 million papers), the peS2o retriever requires a lot of CPU memory. In our main experiments, we retrieved initial passages offline. 
 
