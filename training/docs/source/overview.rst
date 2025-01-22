@@ -68,7 +68,7 @@ torchtune is designed to be easy to understand, use and extend.
 
 - Composition over implementation inheritance - layers of inheritance for code re-use makes the code hard to read and extend
 - No training frameworks - explicitly outlining the training logic makes it easy to extend for custom use cases
-- Code duplication is prefered over unecessary abstractions
+- Code duplication is preferred over unecessary abstractions
 - Modular building blocks over monolithic components
 
 
