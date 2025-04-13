@@ -28,10 +28,15 @@ def fast_load_jsonl_shard(args, shard_index):
 
     passage_shard_save_path = os.path.join(args.passages_dir, f'raw_passages-{shard_index}-of-{num_shards}.pkl')
     
-    if os.path.exists(passage_shard_save_path):
-        logging.info(f'Loading from {passage_shard_save_path}...')
-        with open(passage_shard_save_path, 'rb') as file:
-            passages = pickle.load(file)
+    if os.path.exists(passage_shard_save_path) or os.path.exists(passage_shard_save_path.replace('.pkl', '.jsonl')):
+        if '.pkl' in passage_shard_save_path:
+            logging.info(f'Loading from {passage_shard_save_path}...')
+            with open(passage_shard_save_path, 'rb') as file:
+                passages = pickle.load(file)
+        elif '.jsonl' in passage_shard_save_path:
+            passage_shard_save_path = passage_shard_save_path.replace('.pkl', '.jsonl')
+            logging.info(f'Loading from {passage_shard_save_path}...')
+            passages = load_jsonl(file)
         return passages
 
     if not os.path.exists(raw_data_path):
