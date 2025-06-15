@@ -4,5 +4,5 @@ hf_hub_download(
     subfolder = "v3",
     repo_type="dataset",
     cache_dir = "/network/projects/living-review",
-    filename="train-*.zst"
+    filename="train-*"
 )
