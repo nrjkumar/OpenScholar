@@ -13,6 +13,7 @@ def decompress_folder_zst_to_jsonl(input_folder, output_folder):
             zst_file_path = os.path.join(input_folder, filename)
             output_jsonl_path = os.path.join(output_folder, filename.replace('.zst', '.jsonl'))
 
+            print(f"Decompressing {zst_file_path} to {output_jsonl_path} ...")
             with open(zst_file_path, 'rb') as compressed:
                 with dctx.stream_reader(compressed) as reader:
                     text_stream = io.TextIOWrapper(reader, encoding='utf-8')
@@ -23,7 +24,7 @@ def decompress_folder_zst_to_jsonl(input_folder, output_folder):
                                 data = json.loads(line)
                                 out_file.write(json.dumps(data) + '\n')
                             except json.JSONDecodeError:
-                                continue  # Skip malformed lines
+                                print(f"Skipping malformed line: {line}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
