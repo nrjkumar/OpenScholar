@@ -1,4 +1,5 @@
 import os
+import sys
 import zstandard as zstd
 import io
 import json
@@ -10,8 +11,6 @@ def decompress_folder_zst_to_jsonl(input_folder, output_folder):
     for filename in os.listdir(input_folder):
         if filename.endswith('.zst'):
             zst_file_path = os.path.join(input_folder, filename)
-
-            # Each output .jsonl file has same base name as .zst file
             output_jsonl_path = os.path.join(output_folder, filename.replace('.zst', '.jsonl'))
 
             with open(zst_file_path, 'rb') as compressed:
@@ -22,6 +21,21 @@ def decompress_folder_zst_to_jsonl(input_folder, output_folder):
                         for line in text_stream:
                             try:
                                 data = json.loads(line)
-                                out_file.write(json.dumps(data) + '\n')  # One JSON object per line
+                                out_file.write(json.dumps(data) + '\n')
                             except json.JSONDecodeError:
-                                continue  # Skip malformed JSON lines
+                                continue  # Skip malformed lines
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python decompress_zst_to_jsonl.py <input_folder> <output_folder>")
+        sys.exit(1)
+
+    input_folder = sys.argv[1]
+    output_folder = sys.argv[2]
+
+    if not os.path.isdir(input_folder):
+        print(f"Error: Input folder '{input_folder}' does not exist or is not a directory.")
+        sys.exit(1)
+
+    decompress_folder_zst_to_jsonl(input_folder, output_folder)
+    print(f"Decompression complete. Files saved in: {output_folder}")
