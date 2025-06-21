@@ -12,7 +12,7 @@
     
 #     print(f"Saved {len(files)} files to {files}")
     
-import json
+import json , argparse
 
 def json_to_jsonl(input_file, output_file):
     with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
@@ -20,3 +20,14 @@ def json_to_jsonl(input_file, output_file):
             data = json.loads(line)
             for item in data:
                 f_out.write(json.dumps(item) + '\n')
+                
+def main():
+    parser = argparse.ArgumentParser(description='Convert JSON file to JSONL file')
+    parser.add_argument('-i', '--input', help='Input JSON file', required=True)
+    parser.add_argument('-o', '--output', help='Output JSONL file', required=True)
+    args = parser.parse_args()
+
+    json_to_jsonl(args.input, args.output)
+
+if __name__ == '__main__':
+    main()
