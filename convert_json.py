@@ -11,44 +11,57 @@
 #         time.sleep(0.1)
     
 #     print(f"Saved {len(files)} files to {files}")
-    
-import json , argparse, jsonlines
 
-def json_to_jsonl(json_file_path, jsonl_file_path): #input_file, output_file):
-#     with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
-#         for line in f_in:
-#             data = json.loads(line)
-#             for item in data:
-#                 f_out.write(json.dumps(item) + '\n')
+import json
+import multiprocessing
+from tqdm import tqdm
 
+
+def parse_json_line(line):
     try:
-        with open(json_file_path, 'r') as json_file:
-            data = json.load(json_file)
-
-        with jsonlines.open(jsonl_file_path, mode='w') as writer:
-            if isinstance(data, list):
-                for item in data:
-                    writer.write(item)
-            elif isinstance(data, dict):
-                writer.write(data)
-            else:
-                print("Error: Input JSON must be a list or a dictionary.")
-
-    except FileNotFoundError:
-        print(f"Error: File not found at {json_file_path}")
+        return json.loads(line.strip())
     except json.JSONDecodeError:
-        print(f"Error: Invalid JSON format in {json_file_path}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        return None
 
-                
-def main():
-    parser = argparse.ArgumentParser(description='Convert JSON file to JSONL file')
-    parser.add_argument('-i', '--input', help='Input JSON file', required=True)
-    parser.add_argument('-o', '--output', help='Output JSONL file', required=True)
+
+def process_jsonl_parallel(input_path, output_path, batch_size=10000):
+    with open(input_path, 'r', encoding='utf-8') as infile, \
+         open(output_path, 'w', encoding='utf-8') as outfile:
+
+        pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
+
+        lines = []
+        total_written = 0
+        with tqdm(desc="Processing", unit=" lines") as pbar:
+            for line in infile:
+                lines.append(line)
+                if len(lines) >= batch_size:
+                    results = pool.map(parse_json_line, lines)
+                    for obj in results:
+                        if obj:
+                            outfile.write(json.dumps(obj, ensure_ascii=False) + '\n')
+                            total_written += 1
+                    pbar.update(len(lines))
+                    lines = []
+
+            # Final flush
+            if lines:
+                results = pool.map(parse_json_line, lines)
+                for obj in results:
+                    if obj:
+                        outfile.write(json.dumps(obj, ensure_ascii=False) + '\n')
+                        total_written += 1
+                pbar.update(len(lines))
+
+            pool.close()
+            pool.join()
+            print(f"\n✅ Done. Total lines written: {total_written}")
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Stream large JSON array to JSONL format")
+    parser.add_argument("input", help="Path to large JSON array file (e.g., huge.json)")
+    parser.add_argument("output", help="Path to output JSONL file (e.g., huge.jsonl)")
     args = parser.parse_args()
-
-    json_to_jsonl(args.input, args.output)
-
-if __name__ == '__main__':
-    main()
