@@ -8,16 +8,16 @@
 #SBATCH --output=logs/embedding_%A_%a.out
 #SBATCH --error=logs/embedding_%A_%a.err
 #SBATCH --partition=gpu                 # Use appropriate partition
-#SBATCH --gres=gpu:1                    # Request GPU if needed
+                 # Request GPU if needed
 #SBATCH --nodes=1                       # Use single node per task
-#SBATCH --constraint=v100               # Specify GPU type if needed
+            # Specify GPU type if needed
 #SBATCH --exclusive                     # Use entire node (optional)
 
 # Create logs directory if it doesn't exist
 mkdir -p logs
 
 # Set your data path
-datastore_raw_data_path=$PES2O_V3_JSONL_DIR
+datastore_raw_data_path= ./dataset/jsonl
 num_shards=16
 
 # The SLURM_ARRAY_TASK_ID is automatically set by SLURM for each job
