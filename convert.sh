@@ -9,7 +9,7 @@
 
 # Define input files or chunks - example: files_0.json to files_9.json
 INPUT_DIR="./v3"
-OUTPUT_DIR="./jsonl"
+OUTPUT_DIR="./batch/jsonl"
 BATCH_SIZE=10000
 
 INPUT_FILE="${INPUT_DIR}/file_${SLURM_ARRAY_TASK_ID}.json"
@@ -19,4 +19,5 @@ echo "Running job $SLURM_ARRAY_TASK_ID"
 echo "Input: $INPUT_FILE"
 echo "Output: $OUTPUT_FILE"
 
-python process_json_parallel.py "$INPUT_FILE" "$OUTPUT_FILE" --batch_size $BATCH_SIZE
+#python /network/scratch/n/neeraj.kumar/OpenScholar/$SLURMTMPDIR/dataset/data/convert_jsonl.py
+python /network/scratch/n/neeraj.kumar/OpenScholar/$SLURMTMPDIR/dataset/data/convert_jsonl.py "$INPUT_FILE" "$OUTPUT_FILE" --batch_size $BATCH_SIZE
