@@ -4,10 +4,10 @@
 #SBATCH --ntasks=1                      # One task per job
 #SBATCH --cpus-per-task=1              # Adjust based on your needs
 #SBATCH --mem=64G                  # Memory per job - adjust as needed
-#SBATCH --time=24:00:00                 # Max runtime - adjust as needed
+              # Max runtime - adjust as needed
 #SBATCH --output=logs/embedding_%A_%a.out
 #SBATCH --error=logs/embedding_%A_%a.err
-#SBATCH --partition=unkillable-cpu                 # Use appropriate partition
+            # Use appropriate partition
                  # Request GPU if needed
 #SBATCH --nodes=1                       # Use single node per task
             # Specify GPU type if needed
