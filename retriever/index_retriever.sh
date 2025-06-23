@@ -17,7 +17,7 @@
 mkdir -p logs
 
 # Set your data path
-datastore_raw_data_path= ./dataset/jsonl
+datastore_raw_data_path= /network/scratch/n/neeraj.kumar/OpenScholar/dataset/jsonl
 num_shards=16
 
 # The SLURM_ARRAY_TASK_ID is automatically set by SLURM for each job
