@@ -2,8 +2,8 @@
 #SBATCH --job-name=pes2o_embedding
 #SBATCH --array=0-15                    # Creates 16 parallel jobs (0 to 15)
 #SBATCH --ntasks=1                      # One task per job
-#SBATCH --cpus-per-task=4               # Adjust based on your needs
-#SBATCH --mem=16G                       # Memory per job - adjust as needed
+#SBATCH --cpus-per-task=8               # Adjust based on your needs
+#SBATCH --mem=64G                       # Memory per job - adjust as needed
 #SBATCH --time=24:00:00                 # Max runtime - adjust as needed
 #SBATCH --output=logs/embedding_%A_%a.out
 #SBATCH --error=logs/embedding_%A_%a.err
