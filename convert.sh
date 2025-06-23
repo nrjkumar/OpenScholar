@@ -1,4 +1,8 @@
-SBATCH --array=0-9          # Array jobs 0 to 9
+#!/bin/bash
+#SBATCH --job-name=jsonl_convert
+#SBATCH --output=logs/job_%A_%a.out
+#SBATCH --error=logs/job_%A_%a.err
+#SBATCH --array=0-9          # Array jobs 0 to 9
 
 # Load python environment if needed, e.g.:
 # module load python/3.9
