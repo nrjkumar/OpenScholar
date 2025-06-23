@@ -7,7 +7,7 @@
 #SBATCH --time=24:00:00                 # Max runtime - adjust as needed
 #SBATCH --output=logs/embedding_%A_%a.out
 #SBATCH --error=logs/embedding_%A_%a.err
-#SBATCH --partition=long-cpu                 # Use appropriate partition
+#SBATCH --partition=main-cpu                 # Use appropriate partition
                  # Request GPU if needed
 #SBATCH --nodes=1                       # Use single node per task
             # Specify GPU type if needed
