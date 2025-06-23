@@ -51,4 +51,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Stream large JSON array to JSONL format")
     parser.add_argument("input", help="Path to large JSON array file (e.g., huge.json)")
     parser.add_argument("output", help="Path to output JSONL file (e.g., huge.jsonl)")
+    parser.add_argument("--batch_size", type=int, default=10000, help="Batch size for multiprocessing")
     args = parser.parse_args()
+
+    process_jsonl_parallel(args.input, args.output, batch_size=args.batch_size)
