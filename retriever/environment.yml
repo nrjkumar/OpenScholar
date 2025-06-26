@@ -1,13 +1,15 @@
 name: scaling
 channels:
+  - pip
   - pytorch
   - nvidia
   - conda-forge
   - defaults
 dependencies:
+  - pip
   - python=3.10
   - numpy
-  - torch
+
   - faiss-gpu=1.8.0
   
   - pip:
