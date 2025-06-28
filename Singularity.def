@@ -14,7 +14,6 @@ From: nvcr.io/nvidia/pytorch:24.11-py3
         apt-get clean
         echo "Installing things with pip"
         pip install tqdm
-        pip3 install faiss-gpu
    
         echo "Creating mount points"
         mkdir /dataset
