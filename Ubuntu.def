@@ -13,11 +13,10 @@ From: ubuntu:xenial
         echo "Installing Tools with apt-get"
      	apt-get update
  #      apt install python3
- #      python3.11 -m ensurepip --upgrade
-        apt-get install -y cmake libcupti-dev libyaml-dev wget unzip
+        apt-get install -y cmake libcupti-dev libyaml-dev wget unzip zlib1g-dev libjpeg8-dev
         apt-get clean
         echo "Installing things with pip"
- #      pip install tqdm
+
        	
       	apt-get update && apt-get install -y automake build-essential bzip2 wget git default-jre unzip
 
