@@ -1,0 +1,51 @@
+
+
+################# Header: Define the base system you want to use ################
+# Reference of the kind of base you want to use (e.g., docker, debootstrap, shub).
+Bootstrap: docker
+# Select the docker image you want to use (Here we choose tensorflow)
+From: ubuntu:xenial
+
+
+################# Section: Defining the system #################################
+# Commands in the %post section are executed within the container.
+%post
+        echo "Installing Tools with apt-get"
+     	apt-get update
+ #      apt install python3
+ #      python3.11 -m ensurepip --upgrade
+        apt-get install -y cmake libcupti-dev libyaml-dev wget unzip
+        apt-get clean
+        echo "Installing things with pip"
+ #      pip install tqdm
+       	
+      	apt-get update && apt-get install -y automake build-essential bzip2 wget git default-jre unzip
+
+	# Install miniconda 
+	wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+	bash Miniconda3-latest-Linux-x86_64.sh -b -f -p /miniconda3/
+	rm Miniconda3-latest-Linux-x86_64.sh
+
+	# pull the conda functions in . /miniconda3/etc/profile.d/conda.sh and make pip, etc. available while in %post
+	export PATH="/miniconda3/bin:$PATH"
+	
+	# Use conda to install pip, numpy
+	conda install -y -c conda-forge pip numpy 
+
+	# Help conda resolving Python "import" 
+	conda update --all
+        
+        echo "Creating mount points"
+        mkdir /dataset
+        mkdir /tmp_log
+        mkdir /final_log
+
+
+# Environment variables that should be sourced at runtime.
+%environment
+        # use bash as default shell
+        SHELL=/bin/bash
+        export SHELL
+        export PATH=/miniconda3/bin:$PATH
+        
+      
