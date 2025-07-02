@@ -4,7 +4,7 @@
 # Reference of the kind of base you want to use (e.g., docker, debootstrap, shub).
 Bootstrap: docker
 # Select the docker image you want to use (Here we choose tensorflow)
-From: ubuntu:xenial
+From: ubuntu:plucky
 
 
 ################# Section: Defining the system #################################
@@ -13,7 +13,7 @@ From: ubuntu:xenial
         echo "Installing Tools with apt-get"
      	apt-get update
  #      apt install python3
-        apt-get install -y cmake libcupti-dev libyaml-dev wget unzip zlib1g-dev libjpeg8 libwebp liblcms2-2
+        apt-get install -y cmake libcupti-dev libyaml-dev wget unzip zlib1g-dev libjpeg8 libwebp-dev liblcms2-2
         apt-get clean
         echo "Installing things with pip"
 
