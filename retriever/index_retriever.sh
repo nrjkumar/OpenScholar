@@ -18,7 +18,7 @@
 mkdir -p logs
 
 # Set your data path
-datastore_raw_data_path= dataset/jsonl
+datastore_raw_data_path= $SLURM_TMPDIR/dataset/jsonl
 num_shards=16
 
 # The SLURM_ARRAY_TASK_ID is automatically set by SLURM for each job
@@ -26,7 +26,7 @@ echo "Starting job ${SLURM_ARRAY_TASK_ID} of ${num_shards}"
 echo "Processing shard ${SLURM_ARRAY_TASK_ID}"
 
 # Run the embedding task for this specific shard
-PYTHONPATH=. python ric/main_ric.py \
+PYTHONPATH=. python retreiver/ric/main_ric.py \
   --config-name=pes2o_v3 \
   tasks.datastore.embedding=true \
   tasks.datastore.index=true \
