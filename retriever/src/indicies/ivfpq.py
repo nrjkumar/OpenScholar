@@ -164,7 +164,7 @@ class IVFPQIndexer(object):
 
 
 if __name__ == '__main__':
-    embed_dir = '$SLURM_TMPDIR/gscratch/zlab/rulins/data/scaling_out/embeddings/akariasai/pes2o_contriever/pes2o_v3/16-shards/'
+    embed_dir = '$SLURM_TMPDIR/data/scaling_out/embeddings/akariasai/pes2o_contriever/pes2o_v3/16-shards/'
     embed_paths = [os.path.join(embed_dir, filename) for filename in os.listdir(embed_dir)]
     index_path = '$SLURM_TMPDIR/gscratch/zlab/rulins/pes2o_v3_ivfpq_1M_4096_64.index'
     index = IVFPQIndexer(
