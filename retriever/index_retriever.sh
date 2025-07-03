@@ -26,7 +26,7 @@ echo "Starting job ${SLURM_ARRAY_TASK_ID} of ${num_shards}"
 echo "Processing shard ${SLURM_ARRAY_TASK_ID}"
 
 # Run the embedding task for this specific shard
-PYTHONPATH=. python retriever/ric/main_ric.py \
+PYTHONPATH=. python $pwd /ric/main_ric.py \
   --config-name=pes2o_v3 \
   tasks.datastore.embedding=true \
   tasks.datastore.index=true \
