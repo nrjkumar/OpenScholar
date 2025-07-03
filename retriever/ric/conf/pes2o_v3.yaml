@@ -24,7 +24,8 @@ datastore:
   domain: pes2o_v3
   raw_data_path: null
   chunk_size: 256  # chunk size in number of words
-  datastore_root_dir: /gscratch/zlab/rulins/data/scaling_out
+  #datastore_root_dir: /gscratch/zlab/rulins/data/scaling_out
+  datastore_root_dir: $SLURM_TMPDIR/data/scaling_out
   
   embedding:
     raw_data_path: ${datastore.raw_data_path}
