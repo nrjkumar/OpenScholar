@@ -30,7 +30,6 @@ From: ubuntu:noble
 	
 	# Use conda to install pip, numpy
 	conda install -y -c conda-forge pip numpy 
-        pip install python==3.11
         conda install -c "nvidia/label/cuda-12.6.3" cuda-toolkit
 
 	# Help conda resolving Python "import" 
