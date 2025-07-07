@@ -12,7 +12,7 @@ From: ubuntu:noble
 %post
         echo "Installing Tools with apt-get"
      	apt-get update
- #      apt install python3
+
         apt-get install -y cmake libcupti-dev libyaml-dev wget unzip zlib1g-dev libjpeg8 libwebp-dev liblcms2-2
         apt-get clean
         echo "Installing things with pip"
@@ -30,6 +30,8 @@ From: ubuntu:noble
 	
 	# Use conda to install pip, numpy
 	conda install -y -c conda-forge pip numpy 
+        pip install python==3.11
+        conda install -c "nvidia/label/cuda-12.6.3" cuda-toolkit
 
 	# Help conda resolving Python "import" 
 	conda update --all
