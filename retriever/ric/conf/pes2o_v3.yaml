@@ -22,7 +22,7 @@ model:
 
 datastore:
   domain: pes2o_v3
-  raw_data_path: null
+  raw_data_path: $SLURM_TMPDIR/data/jsonl
   chunk_size: 256  # chunk size in number of words
   #datastore_root_dir: /gscratch/zlab/rulins/data/scaling_out
   datastore_root_dir: data/scaling_out

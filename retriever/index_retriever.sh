@@ -7,19 +7,28 @@
 #SBATCH --time=12:00:00                # Max runtime - adjust as needed
 #SBATCH --output=logs/embedding_%A_%a.out
 #SBATCH --error=logs/embedding_%A_%a.err
+#SBATCH --gres=gpu:1
+#SBATCH --constraint v100|l40s   # Specify GPU type if needed
          # Use appropriate partition
                   # Request GPU if needed
                     # Use single node per task
-            # Specify GPU type if needed
+      
                 # Use entire node (optional)
 
 
-# Create logs directory if it doesn't exist
-mkdir -p logs
+
+rsync -avz --progress /network/scratch/n/neeraj.kumar/OpenScholar/dataset/jsonl /tmp/raw_dataset/dataset
+
+module load miniconda
+conda activate akari
+
+
+# Create logs directory if it doesn't exist--
+mkdir -p /network/scratch/n/neeraj.kumar/logs
 
 # Set your data path
-datastore_raw_data_path= $SLURM_TMPDIR/dataset/jsonl
-num_shards=16
+datastore_raw_data_path= /tmp/raw_dataset/dataset/jsonl
+num_shards=8
 
 # The SLURM_ARRAY_TASK_ID is automatically set by SLURM for each job
 echo "Starting job ${SLURM_ARRAY_TASK_ID} of ${num_shards}"
